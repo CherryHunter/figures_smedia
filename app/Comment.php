@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     protected $fillable = [
-        'body', 'user_id', 'post_id',
+        'body', 'user_id', 'figure_id', 'created_at', 'updated_at', 'reported'
     ];
 
     public function user() {
@@ -16,5 +16,11 @@ class Comment extends Model
 
   public function sale() {
       return $this->belongsTo('App\Sale');
-}
+
+    }
+
+  public function figure() {
+    return $this->belongsTo('App\Figure');
+  }
+
 }

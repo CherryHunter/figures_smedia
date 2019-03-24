@@ -19,6 +19,7 @@ class CreateSalesTable extends Migration
             $table->date('created_at');
             $table->unsignedInteger('figure_id');
             $table->unsignedInteger('shop_id');
+            $table->timestamp('created_at')->nullable();
 
             $table->foreign('figure_id')->references('id')->on('figures');
             $table->foreign('shop_id')->references('id')->on('shops');

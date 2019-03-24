@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Friend;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'permission_id'
+        'name', 'email', 'password', 'permission_id', 'description', 'avatar', 'reported', 'banned'
     ];
 
     /**
@@ -57,8 +58,39 @@ class User extends Authenticatable
         return $this->belongsTo('App\Permission');
   }
 
-  public function notfifications(){
-      return $this->belongsToMany('App\Figure');
+  public function actual_notifications(){
+      return $this->hasMany('App\ActualNotification');
+  }
+
+  public function friends(){
+      $friends = [];
+      if (count($friends1 = Friend::where('user1_id', $this->id)->where('accepted','1')->get())!=0){
+      foreach ($friends1 as $user){
+      array_push($friends,$user->receiver);
+      }}
+      if (count($friends2 = Friend::where('user2_id', $this->id)->where('accepted','1')->get())!=0){
+      foreach ($friends2 as $user){
+      array_push($friends,$user->sender);
+      }}
+      return $friends;
+  }
+
+  public function allnotifications(){
+    $all_notifications = 0;
+    if (count($notifications = ActualNotification::where('user_id', $this->id)->get())!=0){
+    $all_notifications = $all_notifications + count($notifications);}
+    if (count($requests = Friend::where('user2_id', $this->id)->where('accepted','0')->get())!=0){
+    $all_notifications = $all_notifications + count($requests);}
+    return $all_notifications;
+  }
+
+
+  public function myfigures(){
+      return $this->hasMany('App\Collection');
+  }
+
+  public function reports(){
+      return $this->hasMany('App\Report');
   }
 
 

@@ -23,6 +23,10 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->unsignedInteger('permission_id')->default('2');
             $table->foreign('permission_id')->references('id')->on('permissions');
+            $table->mediumText('description');
+            $table->string('avatar')->default('default.jpg');
+            $table->integer('reported')->default('0');
+            $table->integer('banned')->default('0');
         });
     }
 

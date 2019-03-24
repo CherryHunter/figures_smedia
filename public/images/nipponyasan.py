@@ -4,6 +4,7 @@ import bs4, requests, os, time, mysql.connector, datetime
 
 options = Options()
 options.add_argument("--log-level=3")
+options.add_argument("--headless")
 
 mydb = mysql.connector.connect(
     host="localhost",

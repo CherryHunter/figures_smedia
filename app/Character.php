@@ -14,4 +14,9 @@ class Character extends Model
   public function figures(){
       return $this->hasMany('App\Figure');
   }
+
+  public function notfifiedUsers(){
+      return $this->belongsToMany('App\User');
+  }
+  
 }

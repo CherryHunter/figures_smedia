@@ -18,10 +18,12 @@ class CreateCommentsTable extends Migration
             $table->mediumText('body');
             $table->timestamps();
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('sale_id');
+            $table->unsignedInteger('figure_id');
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('sale_id')->references('id')->on('sales');
+            $table->foreign('figure_id')->references('id')->on('figures');
+
+            $table->integer('reported')->default('0');
         });
     }
 

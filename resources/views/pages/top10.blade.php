@@ -9,7 +9,7 @@
     @if(count($figures) > 0)
 
       @foreach($figures as $figure)
-          <li class="list-group-item"><img class="card-img-top rounded-circle img-thumbnail smollimg" src="{{ asset('images/'.$figure['image']) }}" align="left" alt=""><h6 class="card-body" > {{ $figure['title'] }}</h6></li>
+          <a href="{{route('show_figure', ['id'=>$figure->id])}}" onclick="#"><li class="list-group-item"><img class="card-img-top rounded-circle img-thumbnail smollimg" src="{{ asset('images/'.$figure['image']) }}" align="left" alt=""><h6 class="card-body" > {{ $figure['title'] }}</h6></li></a>
 
       @endforeach
     @endif

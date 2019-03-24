@@ -19,7 +19,9 @@ class CreateMailboxesTable extends Migration
             $table->mediumText('body');
             $table->unsignedInteger('sender_id');
             $table->unsignedInteger('receiver_id');
-            
+            $table->integer('sender_delete')->default('0');
+            $table->integer('receiver_delete')->default('0');
+
             $table->foreign('sender_id')->references('id')->on('users');
             $table->foreign('receiver_id')->references('id')->on('users');
         });

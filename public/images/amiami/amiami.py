@@ -9,6 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 options = Options()
 options.add_argument("--log-level=3")
+options.add_argument("--headless")
 
 mydb = mysql.connector.connect(
     host="localhost",

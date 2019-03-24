@@ -16,10 +16,10 @@ class CreateNotificationsTable extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('figure_id');
+            $table->unsignedInteger('character_id');
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('figure_id')->references('id')->on('figures');
+            $table->foreign('character_id')->references('id')->on('characters');
         });
     }
 

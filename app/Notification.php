@@ -8,14 +8,16 @@ class Notification extends Model
 {
 
     protected $fillable = [
-        'user_id', 'figure_id',
+        'user_id', 'character_id',
     ];
+
+    public $timestamps = false;
 
     public function user() {
         return $this->belongsTo('App\User');
   }
 
-  public function figure() {
-      return $this->belongsTo('App\Figure');
+  public function character() {
+      return $this->belongsTo('App\Character');
 }
 }
